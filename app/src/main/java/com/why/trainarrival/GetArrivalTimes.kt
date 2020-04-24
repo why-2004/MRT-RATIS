@@ -24,20 +24,16 @@ public class GetArrivalTimes(private val stn:String, private val viewState:Strin
         .build()
 
     private val request = Request.Builder()
-            .url("http://trainarrivalweb.smrt.com.sg/default.aspx")
-            .header("X-MicrosoftAjax", "Delta=true")
+        .url("http://trainarrivalweb.smrt.com.sg/default.aspx")
         .addHeader("Host","""trainarrivalweb.smrt.com.sg""")
         .addHeader("Accept-Language","""en-US,en;q=0.5""")
         .addHeader("Accept","""*/*""")
-            //.addHeader("Accept-Encoding","gzip, deflate")
-            .addHeader("Cache-Control", "no-cache")
-            .addHeader("Content-Type", """application/x-www-form-urlencoded""")
-            .addHeader("Origin","""http://trainarrivalweb.smrt.com.sg""")
-            .addHeader("Connection","""keep-alive""")
-            .addHeader("Referer","""http://trainarrivalweb.smrt.com.sg/default.aspx""")
-
+        .addHeader("Cache-Control", "no-cache")
+        .addHeader("Content-Type", """application/x-www-form-urlencoded""")
+        .addHeader("Origin","""http://trainarrivalweb.smrt.com.sg""")
+        .addHeader("Connection","""keep-alive""")
+        .addHeader("Referer","""http://trainarrivalweb.smrt.com.sg/default.aspx""")
         .addHeader("cookie","""ASP.NET_SessionId=umv0ktalceechc3ejkykytvd""")
-        .addHeader("User-Agent","""Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:75.0) Gecko/20100101 Firefox/75.0""")
         .post(formBody)
         .build()
 
@@ -53,7 +49,11 @@ public class GetArrivalTimes(private val stn:String, private val viewState:Strin
                     times = doc.getElementsContainingOwnText("""min(s)""")
                     dests =
                         doc.getElementsMatchingOwnText("^((Pasir Ris)|(Joo Koon)|(Tuas Link)|(Do Not Board))$")
-                    if (this.times.size == this.dests.size) {
+                    if(this.times.size==0){
+                        println("what???")
+                        println(s)
+                    }
+                    else if (this.times.size == this.dests.size) {
                         println("size matches")
                         trains = ArrayList()
                         for (i in 0 until this.times.size) {

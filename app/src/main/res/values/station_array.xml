@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="station_array">
+        <item>Tampines</item>
+        <item>Clementi</item>
+        <item>Buona Vista</item>
+    </string-array>
+</resources>
